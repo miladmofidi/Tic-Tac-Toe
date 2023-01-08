@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static org.example.board.GameService.initBoard;
+
 /**
  * @author milad mofidi
  * user: ${USER} on ${DATE}
@@ -19,10 +21,12 @@ public class Main
     // of three box given below.
     static String checkWinner()
     {
-        for (int a = 0; a < 8; a++) {
+        for (int a = 0; a < 8; a++)
+        {
             String line = null;
 
-            switch (a) {
+            switch (a)
+            {
                 case 0:
                     line = board[0] + board[1] + board[2];
                     break;
@@ -49,22 +53,27 @@ public class Main
                     break;
             }
             //For X winner
-            if (line.equals("XXX")) {
+            if (line.equals("XXX"))
+            {
                 return "X";
             }
 
             // For O winner
-            else if (line.equals("OOO")) {
+            else if (line.equals("OOO"))
+            {
                 return "O";
             }
         }
 
-        for (int a = 0; a < 9; a++) {
+        for (int a = 0; a < 9; a++)
+        {
             if (Arrays.asList(board).contains(
-                    String.valueOf(a + 1))) {
+                    String.valueOf(a + 1)))
+            {
                 break;
             }
-            else if (a == 8) {
+            else if (a == 8)
+            {
                 return "draw";
             }
         }
@@ -102,16 +111,14 @@ public class Main
         System.out.println("|---|---|---|");
     }
 
+
+
     public static void main(String[] args)
     {
+        board= initBoard();
         Scanner in = new Scanner(System.in);
-        board = new String[9];
         turn = "X";
         String winner = null;
-
-        for (int a = 0; a < 9; a++) {
-            board[a] = String.valueOf(a + 1);
-        }
 
         System.out.println("Welcome to 3x3 Tic Tac Toe.");
         printBoard();
@@ -119,22 +126,26 @@ public class Main
         System.out.println(
                 "X will play first. Enter a slot number to place X in:");
 
-        while (winner == null) {
+        while (winner == null)
+        {
             int numInput;
 
             // Exception handling.
             // numInput will take input from user like from 1 to 9.
             // If it is not in range from 1 to 9.
             // then it will show you an error "Invalid input."
-            try {
+            try
+            {
                 numInput = in.nextInt();
-                if (!(numInput > 0 && numInput <= 9)) {
+                if (!(numInput > 0 && numInput <= 9))
+                {
                     System.out.println(
                             "Invalid input; re-enter slot number:");
                     continue;
                 }
             }
-            catch (InputMismatchException e) {
+            catch (InputMismatchException e)
+            {
                 System.out.println(
                         "Invalid input; re-enter slot number:");
                 continue;
@@ -143,20 +154,24 @@ public class Main
             // This game has two player x and O.
             // Here is the logic to decide the turn.
             if (board[numInput - 1].equals(
-                    String.valueOf(numInput))) {
+                    String.valueOf(numInput)))
+            {
                 board[numInput - 1] = turn;
 
-                if (turn.equals("X")) {
+                if (turn.equals("X"))
+                {
                     turn = "O";
                 }
-                else {
+                else
+                {
                     turn = "X";
                 }
 
                 printBoard();
                 winner = checkWinner();
             }
-            else {
+            else
+            {
                 System.out.println(
                         "Slot already taken; re-enter slot number:");
             }
@@ -164,13 +179,15 @@ public class Main
 
         // If no one win or lose from both player x and O.
         // then here is the logic to print "draw".
-        if (winner.equalsIgnoreCase("draw")) {
+        if (winner.equalsIgnoreCase("draw"))
+        {
             System.out.println(
                     "It's a draw! Thanks for playing.");
         }
 
         // For winner -to display Congratulations! message.
-        else {
+        else
+        {
             System.out.println(
                     "Congratulations! " + winner
                     + "'s have won! Thanks for playing.");
