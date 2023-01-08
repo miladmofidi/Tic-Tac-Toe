@@ -1,2 +1,2 @@
 # Tic-Tac-Toe
-Tic-Tac-Toe game in java
+Simple Tic-Tac-Toe game in Java using IF and SWITCH-CASE
